@@ -7,11 +7,23 @@ function App() {
   const [error, setError] = useState("");
 
   const handleFirstName = (event) => {
-    setFirstName(event.target.value);
+    const value = event.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setFirstName(value);
+      setError("");
+    } else {
+      setError("Please enter valid characters (letters and spaces only)");
+    }
   };
 
   const handleLastName = (event) => {
-    setLastName(event.target.value);
+    const value = event.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setLastName(value);
+      setError("");
+    } else {
+      setError("Please enter valid characters (letters and spaces only)");
+    }
   };
 
   const handleSubmit = (event) => {
