@@ -8,22 +8,14 @@ function App() {
 
   const handleFirstName = (event) => {
     const value = event.target.value;
-    if (/^[a-zA-Z\s]*$/.test(value)) {
-      setFirstName(value);
-      setError("");
-    } else {
-      setError("Please enter valid characters (letters and spaces only)");
-    }
+    setFirstName(value);
+    setError("");
   };
 
   const handleLastName = (event) => {
     const value = event.target.value;
-    if (/^[a-zA-Z\s]*$/.test(value)) {
-      setLastName(value);
-      setError("");
-    } else {
-      setError("Please enter valid characters (letters and spaces only)");
-    }
+    setLastName(value);
+    setError("");
   };
 
   const handleSubmit = (event) => {
@@ -39,7 +31,7 @@ function App() {
 
   return (
     <div>
-      <h1>Full Name</h1>
+      <h1>Full Name Display</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name:</label>
@@ -66,7 +58,7 @@ function App() {
         </div>
         <button type="submit">Submit</button>
       </form>
-      {fullName && <p>FullName: {fullName}</p>}
+      {fullName && <p>Full Name: {fullName}</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
