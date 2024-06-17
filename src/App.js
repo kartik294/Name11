@@ -1,23 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [error, setError] = useState("");
+
+  const handleFirstName = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastName = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (firstName.trim() && lastName.trim()) {
+      setFullName(`${firstName.trim()} ${lastName.trim()}`);
+      setError("");
+    } else {
+      setFullName("");
+      setError("Please fill in both fields");
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Full Name</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={handleFirstName}
+            placeholder="Enter the first Name"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={handleLastName}
+            placeholder="Enter the last Name"
+            required
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      {fullName && <p>FullName: {fullName}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }
